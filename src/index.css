@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dot-pattern {
+    background: radial-gradient(circle, black 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust the size as needed */
+    opacity: 0.2; /* Adjust opacity for visibility */
+}
