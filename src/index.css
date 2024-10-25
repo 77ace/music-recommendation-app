@@ -7,3 +7,33 @@
     background-size: 20px 20px; /* Adjust the size as needed */
     opacity: 0.2; /* Adjust opacity for visibility */
 }
+
+/*@keyframes gradientShift {*/
+/*    0% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*    100% {*/
+/*        background-position: 100% 50%;*/
+/*    }*/
+/*}*/
+
+/*.animate-gradientShift {*/
+/*    background-size: 200% 200%;*/
+/*    animation: gradientShift 6s ease infinite;*/
+/*}*/
+
+/*@keyframes fadeIn {*/
+/*    0% {*/
+/*        opacity: 0;*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 1;*/
+/*    }*/
+/*}*/
+
+/*.fade-in {*/
+/*    animation: fadeIn 2s ease-in forwards;*/
+/*}*/
+
+
+body {background-color: black; color: #EAEAEA}

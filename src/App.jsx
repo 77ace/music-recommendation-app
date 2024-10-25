@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useFetchSpotifyRecommendations } from "./API_Config/Hooks/useFetchSpotifyRecommendations.js";
 import { useFetchSpotifyGenres } from "./API_Config/Hooks/useFetchSpotifyGenres.js";
-
+import BackgroundGrid from "./UI/BackgroundGrid.jsx";
+import { IoMdMusicalNote } from "react-icons/io";
+import { IoMusicalNote } from "react-icons/io5";
+import BottomStickyDiv from "./BottomStickyDiv.jsx";
+import { FaMusic } from "react-icons/fa6";
+import Header from "./Sections/Header.jsx";
 function App() {
   const { genres, loading2, error2 } = useFetchSpotifyGenres();
   const [shouldFetch, setShouldFetch] = useState(false);
@@ -21,7 +26,10 @@ function App() {
 
   console.log(tracks);
 
-  return <div className="App p-4">Hi</div>;
+  return <div className="App max-w-screen-2xl pt-4 mx-auto min-h-screen">
+    <BackgroundGrid />
+    <Header />
+  </div>;
 }
 
 export default App;
