@@ -1,21 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       animation: {
-        'gradient': 'gradient 8s linear infinite',
+        shimmer: "shimmer 2s linear infinite",
       },
       keyframes: {
-        'gradient': {
-          to: { 'background-position': '200% center' },
-        }
-      }
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
+      },
     },
   },
   plugins: [],
-}
-
+};

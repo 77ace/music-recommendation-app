@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from "react";
 import "../index.css"; // Import CSS for animation
 
 const BackgroundGrid = ({
-                          dotColor = "rgba(255,255,255,0.1)", // Color of the grid dots
-                          dotRadius = 1, // Radius of each dot
-                          gridSize = 20, // Distance between dots
-                          vignetteOpacity = 0.9, // Opacity of the vignette effect
-                          vignetteIntensity = 0.5, // Intensity of the vignette effect
-                        }) => {
+  dotColor = "rgba(255,255,255,0.1)", // Color of the grid dots
+  dotRadius = 1, // Radius of each dot
+  gridSize = 20, // Distance between dots
+  vignetteOpacity = 0.8, // Opacity of the vignette effect
+  vignetteIntensity = 0.5, // Intensity of the vignette effect
+}) => {
   const svgRef = useRef(null);
 
   // Effect to update the grid dynamically when the window is resized
@@ -30,7 +30,16 @@ const BackgroundGrid = ({
   }, []);
 
   return (
-    <div style={{ position: "fixed", top: 0, left: 0, zIndex: -1, width: "100%", height: "100%" }}>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        width: "100%",
+        height: "100%",
+      }}
+    >
       {/* Dot Grid */}
       <svg
         ref={svgRef}
