@@ -8,6 +8,7 @@ export const CustomSlider = memo(
     value,
     setValue,
     // formatLabel,
+    displayLabel,
     min,
     max,
     step,
@@ -45,11 +46,11 @@ export const CustomSlider = memo(
         transition: "all 0.3s cubic-bezier(.81,.04,.41,1.27)",
       },
       "& .MuiSlider-thumb": {
-        height: isSmallScreen ? "22px" : "25px",
-        width: isSmallScreen ? "22px" : "25px",
+        height: isSmallScreen ? "19px" : "25px",
+        width: isSmallScreen ? "19px" : "25px",
         backgroundColor: "#e2e8f0",
         border: isSmallScreen
-          ? "4px solid currentColor"
+          ? "3.2px solid currentColor"
           : isMidScreen
             ? "4.5px solid currentColor"
             : "5px solid currentColor",
@@ -59,6 +60,37 @@ export const CustomSlider = memo(
         },
         "&:before": {
           display: "none",
+        },
+      },
+      "& .MuiSlider-valueLabel": {
+        lineHeight: 1.2,
+        fontSize: isSmallScreen ? "15px" : "16px",
+        background: "unset",
+        padding: "0",
+        width: isSmallScreen ? 42 : 45,
+        height: isSmallScreen ? 42 : 45,
+        borderRadius: "50% 50% 50% 0",
+        backgroundColor: "#37733a",
+        transformOrigin: "bottom left",
+        transform:
+          orientation === "vertical"
+            ? "translate(150%, -100%) rotate(45deg) scale(0)"
+            : "translate(50%, -20%) rotate(45deg) scale(0)",
+        transition: "all 0.3s cubic-bezier(.81,.04,.41,1.27)",
+        "&:before": {
+          display: "none",
+        },
+        "&.MuiSlider-valueLabelOpen": {
+          transform:
+            (orientation === "vertical") & !isSmallScreen
+              ? "translate(148%, -120%) rotate(-45deg) scale(1)"
+              : "translate(51%, -58%) rotate(-20deg) scale(1)",
+        },
+        "& > *": {
+          transform:
+            (orientation === "vertical") & !isSmallScreen
+              ? "rotate(45deg)"
+              : "rotate(20deg)",
         },
       },
     };

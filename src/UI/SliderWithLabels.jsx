@@ -3,27 +3,31 @@ import { CustomSlider } from "./CustomSlider.jsx";
 export const SliderWithLabels = ({
   mainLabel,
   altLabel,
+  min = 0,
+  max = 1,
+  step = 0.05,
   value,
   setValue,
-  orientation,
   className = "",
 }) => (
   <div
     className={`flex items-center justify-center gap-4 sm:h-[50svh] sm:max-h-60 sm:min-h-48 sm:w-fit sm:flex-col lg:max-h-72 ${className}`}
   >
-    <h2 className="text-sm font-[500] text-slate-200 max-sm:hidden">
+    <h2 className="text-sm font-[500] text-neutral-200 max-sm:hidden">
       {mainLabel}
     </h2>
-    <h2 className="text-sm font-[500] text-slate-200 sm:hidden">{altLabel}</h2>
+    <h2 className="text-sm font-[500] text-neutral-200 sm:hidden">
+      {altLabel}
+    </h2>
     <div className="flex flex-grow items-center justify-center max-sm:flex-col">
       <CustomSlider
         value={value}
         setValue={setValue}
-        min={0}
-        max={1}
-        step={0.05}
+        min={min}
+        max={max}
+        step={step}
         defaultValue={value}
-        orientation={orientation}
+        orientation={"vertical"}
       />
       <h2
         className={`pointer-events-none border-[#37733a] bg-[#101010] text-[10px] font-[500] text-[#3e8145] ${
@@ -33,8 +37,10 @@ export const SliderWithLabels = ({
         Off
       </h2>
     </div>
-    <h2 className="text-sm font-[500] text-slate-200 sm:hidden">{mainLabel}</h2>
-    <h2 className="text-sm font-[500] text-slate-200 max-sm:hidden">
+    <h2 className="text-sm font-[500] text-neutral-200 sm:hidden">
+      {mainLabel}
+    </h2>
+    <h2 className="text-sm font-[500] text-neutral-200 max-sm:hidden">
       {altLabel}
     </h2>
   </div>

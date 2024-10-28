@@ -1,57 +1,286 @@
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useState } from "react";
+import { useFetchSpotifyGenres } from "../API_Config/Hooks/useFetchSpotifyGenres.js";
 
-export const GenreDropdown = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+export const GenreDropdown = ({ value, setValue }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { genres, loading2, error2 } = useFetchSpotifyGenres();
 
-  const handleChange = (options) => {
-    // Limit selection to a maximum of 3
-    if (options.length <= 5) {
-      setSelectedOptions(options);
+  // Define categories
+  const commonGenres = [
+    "pop",
+    "rock",
+    "hip-hop",
+    "jazz",
+    "classical",
+    "electronic",
+    "country",
+    "r-n-b",
+    "dance",
+    "indie",
+    "metal",
+    "folk",
+    "reggae",
+    "funk",
+    "indie-pop",
+    "power-pop",
+  ];
+
+  const electronicGenres = [
+    "house",
+    "deep-house",
+    "techno",
+    "trance",
+    "dubstep",
+    "drum-and-bass",
+    "electro",
+    "progressive-house",
+    "club",
+    "idm",
+    "edm",
+    "minimal-techno",
+    "breakbeat",
+    "detroit-techno",
+    "chicago-house",
+    "disco",
+    "dub",
+    "groove",
+    "hardstyle",
+    "synth-pop",
+    "trip-hop",
+  ];
+
+  const rockGenres = [
+    "alt-rock",
+    "alternative",
+    "punk",
+    "punk-rock",
+    "hard-rock",
+    "grunge",
+    "metalcore",
+    "heavy-metal",
+    "black-metal",
+    "death-metal",
+    "hardcore",
+    "psych-rock",
+    "garage",
+    "goth",
+    "cyberpunk",
+    "grindcore",
+    "emo",
+    "rock-n-roll",
+    "rockabilly",
+    "industrial",
+    "ska",
+  ];
+
+  const worldGenres = [
+    "latin",
+    "brazil",
+    "afrobeat",
+    "k-pop",
+    "j-pop",
+    "j-rock",
+    "iranian",
+    "turkish",
+    "mandopop",
+    "cantopop",
+    "samba",
+    "salsa",
+    "pagode",
+    "mpb",
+    "swedish",
+    "world-music",
+    "french",
+    "german",
+    "indian",
+    "malay",
+    "tango",
+    "sertanejo",
+    "bossanova",
+    "philippines-opm",
+    "dancehall",
+    "forro",
+    "j-dance",
+    "j-idol",
+    "latino",
+    "reggaeton",
+  ];
+
+  const moodGenres = [
+    "chill",
+    "ambient",
+    "happy",
+    "sad",
+    "sleep",
+    "study",
+    "summer",
+    "rainy-day",
+    "work-out",
+    "romance",
+    "holidays",
+    "new-age",
+    "party",
+    "road-trip",
+  ];
+
+  const acousticGenres = [
+    "acoustic",
+    "singer-songwriter",
+    "songwriter",
+    "blues",
+    "soul",
+    "piano",
+    "guitar",
+    "folk",
+    "bluegrass",
+    "gospel",
+    "honky-tonk",
+  ];
+
+  const filmAndShowGenres = [
+    "anime",
+    "movies",
+    "disney",
+    "show-tunes",
+    "pop-film",
+    "soundtracks",
+  ];
+
+  // Adjusted filter to capture all remaining genres not yet categorized
+  const otherGenres = genres.filter(
+    (genre) =>
+      ![
+        ...commonGenres,
+        ...electronicGenres,
+        ...rockGenres,
+        ...worldGenres,
+        ...moodGenres,
+        ...acousticGenres,
+        ...filmAndShowGenres,
+      ].includes(genre),
+  );
+
+  // Map genres to options format
+  const formatOptions = (genreList) =>
+    genreList.map((genre) => ({
+      value: genre,
+      label: genre
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+    }));
+
+  // Grouped options for react-select
+  const groupedOptions = [
+    {
+      label: "Common Genres",
+      options: formatOptions(
+        commonGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "Electronic & Dance",
+      options: formatOptions(
+        electronicGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "Rock & Alternative",
+      options: formatOptions(
+        rockGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "World & Cultural",
+      options: formatOptions(
+        worldGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "Relaxation & Mood",
+      options: formatOptions(
+        moodGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "Acoustic & Singer/Songwriter",
+      options: formatOptions(
+        acousticGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    {
+      label: "Film & Shows",
+      options: formatOptions(
+        filmAndShowGenres.filter((genre) => genres.includes(genre)),
+      ),
+    },
+    { label: "Other Genres", options: formatOptions(otherGenres) },
+  ];
+
+  const formatGroupLabel = (data) => (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "left",
+        gap: 12,
+      }}
+    >
+      <span>{data.label}</span>
+      <span
+        style={{
+          backgroundColor: "rgba(29,185,84,0.5)",
+          borderRadius: "2em",
+          color: "#ffffff",
+          display: "inline-block",
+          fontSize: 12,
+          fontWeight: "normal",
+          lineHeight: "1",
+          minWidth: 1,
+          padding: "0.16666666666667em 0.5em",
+          textAlign: "center",
+        }}
+      >
+        {data.options.length}
+      </span>
+    </div>
+  );
+  const handleMenuOpen = () => {
+    if (value.length < 5) {
+      setIsMenuOpen(true);
     }
   };
 
-  const colourOptions = [
-    { value: "pop", label: "Placeholders", color: "#FF8B00" },
-    { value: "rock", label: "Rock", color: "#FF5630" },
-    { value: "jazz", label: "Jazz", color: "#FFC400" },
-    { value: "hiphop", label: "Hip Hop", color: "#36B37E" },
-    { value: "classical", label: "Classical", color: "#253858" },
-    { value: "electronic", label: "Electronic", color: "#00B8D9" },
-    { value: "country", label: "Country", color: "#5243AA" },
-    { value: "blues", label: "Blues", color: "#00875A" },
-    { value: "reggae", label: "Reggae", color: "#0052CC" },
-    { value: "metal", label: "Metal", color: "#666666" },
-  ];
+  const handleChange = (options) => {
+    if (options.length <= 5) {
+      setValue(options);
+    }
+  };
+
   const animatedComponents = makeAnimated();
 
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      backgroundColor: "rgba(0,0,0,0)", // Transparent background
-      borderColor: "#424242", // Green border
-      boxShadow: "none", // Remove default shadow
+      backgroundColor: "rgba(0,0,0,0)",
+      borderColor: "rgba(66,66,66,0)",
+      boxShadow: "none",
       "&:hover": {
-        borderColor: "#575757",
+        borderColor: "rgba(87,87,87,0.1)",
         backgroundColor: "rgba(213,213,213,0.04)",
-      }, // Green on hover
+      },
       borderRadius: "8px",
-      borderTop: "none", // Remove top border
-      borderLeft: "none", // Remove left border
-      borderRight: "none", // Remove right border
-      borderBottom: "none", // Visible bottom border
     }),
     placeholder: (provided) => ({
       ...provided,
-      fontSize: "14px", // Adjust the font size here
+      fontSize: "14px",
       fontWeight: 500,
-      // color: '#dadada', // Customize placeholder color
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "#161616", // Dark (with transparency) background for dropdown item
+      backgroundColor: "#161616",
       opacity: isMenuOpen ? 1 : 0,
       animation: isMenuOpen ? "fadeIn 0.2s ease-in" : "fadeOut 0.2s ease-out",
       borderRadius: "8px",
@@ -59,75 +288,50 @@ export const GenreDropdown = () => {
     }),
     menuList: (base) => ({
       ...base,
-
-      "::-webkit-scrollbar": {
-        width: "4px",
-        height: "0px",
-      },
-      "::-webkit-scrollbar-track": {
-        background: "transparent",
-      },
+      "::-webkit-scrollbar": { width: "4px" },
+      "::-webkit-scrollbar-track": { background: "transparent" },
       "::-webkit-scrollbar-thumb": {
         background: "rgba(156,156,156,0.49)",
         borderRadius: "2px",
       },
-      "::-webkit-scrollbar-thumb:hover": {
-        background: "#979797",
-      },
+      "::-webkit-scrollbar-thumb:hover": { background: "#979797" },
     }),
     option: (provided, state) => ({
       ...provided,
       fontSize: "14px",
       backgroundColor: state.isFocused
         ? "rgba(29,185,84,0.34)"
-        : "rgba(255,255,255,0)", // Green on hover, tranparent otherwise
-      color: state.isFocused ? "#fff" : "#dadada", // White text on hover, offwhite otherwise
+        : "rgba(255,255,255,0)",
+      color: state.isFocused ? "#fff" : "#dadada",
       borderRadius: "8px",
-      ":active": {
-        backgroundColor: "rgba(29,185,84,0.73)", // Green when option is clicked
-        color: "#fff",
-      },
+      ":active": { backgroundColor: "rgba(29,185,84,0.73)", color: "#fff" },
     }),
     multiValue: (provided) => ({
       ...provided,
-      backgroundColor: "rgba(30,172,80,0.18)", // Green background for selected items
-
-      paddingTop: "2px",
-      paddingBottom: "2px",
-      fontWeight: 400,
-
+      backgroundColor: "rgba(30,172,80,0.18)",
       borderRadius: "6px",
     }),
-    multiValueLabel: (provided) => ({
-      ...provided,
-      color: "#fff", // White text color for labels
-    }),
+    multiValueLabel: (provided) => ({ ...provided, color: "#fff" }),
     multiValueRemove: (provided) => ({
       ...provided,
       color: "#fff",
-      ":hover": {
-        backgroundColor: "#1eac50", // Hover color for remove icon
-        color: "white",
-      },
+      ":hover": { backgroundColor: "#1eac50", color: "white" },
     }),
   };
 
   return (
     <Select
-      placeholder={"Select at most 5 options"}
-      closeMenuOnSelect={selectedOptions.length >= 4}
+      placeholder="Max 5 Options"
+      closeMenuOnSelect={value.length >= 4}
       components={animatedComponents}
-      // defaultValue={[colourOptions[4], colourOptionds[5]]}
       isMulti
-      options={colourOptions.map((option) => ({
-        ...option,
-        isDisabled: selectedOptions.length >= 5, // Disable options when limit is reached
-      }))}
-      styles={customStyles} // Apply custom styles
+      options={groupedOptions}
+      styles={customStyles}
       onChange={handleChange}
-      onMenuOpen={() => setIsMenuOpen(true)}
+      onMenuOpen={handleMenuOpen}
       onMenuClose={() => setIsMenuOpen(false)}
-      // blurInputOnSelect={false} // to not close on phone after every select
+      formatGroupLabel={formatGroupLabel}
+      blurInputOnSelect={false} // to not close on phone after every select
     />
   );
 };

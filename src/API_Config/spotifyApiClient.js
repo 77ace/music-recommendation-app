@@ -1,4 +1,5 @@
 // Get the API client credentials stored securely in the .env variables
+
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
 

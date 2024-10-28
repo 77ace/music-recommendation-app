@@ -46,7 +46,7 @@
         left: 20%;
     }
     .checkbox:hover:after {
-        font-size: 1.06rem;}
+        font-size: 1.05rem;}
 }
 .checkbox:focus-visible:before {
     background: #f1f5f9;
@@ -78,8 +78,8 @@
 
 
 @media screen and (max-width: 500px) {
-    .checkbox:after {font-size: 0.85rem;}
-    /*.checkbox:hover:after {*/
-    /*    font-size: 1rem;}*/
+    .checkbox:after {font-size: 0.9rem;}
+    .checkbox:hover:after {
+        font-size: 0.95rem;}
 
 }
