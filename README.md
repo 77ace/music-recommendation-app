@@ -20,7 +20,7 @@ This project organizes components into various directories to streamline functio
 - **HeaderLayout.jsx (src/Layouts/Main)**: Contains header elements for the Home section.
 - **TransitionDiv.jsx (src/UI)**: Used for animated transitions from/to HomeSection.
 - **BackgroundGrid.jsx (src/UI)**: Provides a background grid effect within the Home section.
-- - **AllControlsLayout.jsx (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
+- **AllControlsLayout.jsx (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
 
     - **GenreControlLayout.jsx (src/Layouts)**: Manages genre selection.
         - Uses `GenreDropdown.jsx` (src/UI).
