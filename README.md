@@ -1,65 +1,65 @@
 # GrooveMatch - React Music Recommendation Web App
 
-# Project Structure Overview
+## Project Structure Overview
 
 This project organizes components into various directories to streamline functionality, styling, and data handling:
 
-- **UI**: Contains the lowest-level components used across the app (e.g., dropdowns, sliders, buttons).
-- **layouts**: Houses layout components that organize and structure UI components within sections.
-- **API_config**: Manages the API logic for interacting with external services.
-- **Utils**: Contains custom hooks, such as `useFetchRecommendation`, `useFetchGenres`, and `useSessionStorageState`, as well as a file exporting predefined genres.
+- **src/UI**: Contains the lowest-level components used across the app (e.g., dropdowns, sliders, buttons).
+- **src/layouts**: Houses layout components that organize and structure UI components within sections.
+- **src/API_config**: Manages the API logic for interacting with external services.
+- **src/Utils**: Contains custom hooks, such as `useFetchSpotifyRecommendation`, `useFetchSpotifyGenres`, and `useSessionStorageState`, as well as a file exporting predefined genres.
+- **src/sections**: Stores the main sections of the app, such as `HomeSection` and `ResultsSection`.
 
 ---
 
 ## Main Structure
 
-- **AppRouter.jsx**: The main router file, managing navigation between `HomeSection` and `ResultsSection`.
+- **AppRouter.jsx (src/ )**: The main router file, managing navigation between `HomeSection` and `ResultsSection`.
 
-### HomeSection (sections)
-- **HeaderLayout**: Contains header elements for the Home section.
-- **AllControlsLayout**: Aggregates all control layouts for user interaction.
+### HomeSection (src/sections)
+- **HeaderLayout (src/Layouts/Main)**: Contains header elements for the Home section.
+- **AllControlsLayout (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
 
-    - **GenreControlLayout**: Manages genre selection.
-        - Uses `GenreDropdown` (UI).
+    - **GenreControlLayout (src/Layouts)**: Manages genre selection.
+        - Uses `GenreDropdown` (src/UI).
 
-    - **MoodControlsLayout**: Controls mood-based filters.
-        - Includes `SliderWithLabels` (layouts), containing `CustomSlider` (UI).
-        - Uses `CustomCheckbox` (UI) and `CustomTooltip` (UI) for mood options.
+    - **MoodControlsLayout (src/Layouts)**: Controls mood-based filters.
+        - Includes `SliderWithLabels` (src/layouts), containing `CustomSlider` (src/UI).
+        - Uses `CustomCheckbox` (src/UI) and `CustomTooltip` (src/UI) for mood options.
 
-    - **OptionControlsLayout**: Provides additional filtering options.
-        - Uses `SliderWithLabels` (layouts) and `CustomTooltip` (UI).
+    - **OptionControlsLayout (src/Layouts)**: Provides additional filtering options.
+        - Uses `SliderWithLabels` (src/layouts) and `CustomTooltip` (src/UI).
 
-    - **PopularityControlLayout**: Manages popularity-based filtering.
-        - Uses `Tabs` (UI) for popularity selection.
+    - **PopularityControlLayout (src/Layouts)**: Manages popularity-based filtering.
+        - Uses `Tabs` (src/UI) for popularity selection.
 
-### ResultsSection (sections)
+### ResultsSection (src/sections)
 - Displays the search results based on selected filters.
 
 ---
-
-
 
 ## Components Structure Summary
 ```plaintext
 AppRouter.jsx
 │
-├── HomeSection (sections)
-│   ├── HeaderLayout (layouts/main)
-│   └── AllControlsLayout (layouts/main)
-│       ├── GenreControlLayout (layouts/main)
-│       │   └── GenreDropdown (UI)
+├── HomeSection.jsx                      (src/sections)
+│   ├── HeaderLayout.jsx                 (src/layouts/main)
+│   └── AllControlsLayout.jsx            (src/layouts/main)
 │       │
-│       ├── MoodControlsLayout (layouts/main)
-│       │   ├── SliderWithLabels (layouts)
-│       │   │   └── CustomSlider (UI)
-│       │   ├── CustomCheckbox (UI)
-│       │   └── CustomTooltip (UI)
+│       ├── GenreControlLayout.jsx       (src/layouts)
+│       │   └── GenreDropdown.jsx        (src/UI)
 │       │
-│       ├── OptionControlsLayout (layouts/main)
-│       │   ├── SliderWithLabels (layouts)
-│       │   └── CustomTooltip (UI)
+│       ├── MoodControlsLayout.jsx       (src/layouts)
+│       │   ├── SliderWithLabels.jsx     (src/layouts)
+│       │   │   └── CustomSlider.jsx     (src/UI)
+│       │   ├── CustomCheckbox.jsx       (src/UI)
+│       │   └── CustomTooltip.jsx        (src/UI)
 │       │
-│       └── PopularityControlLayout (layouts/main)
-│           └── Tabs (UI)
+│       ├── OptionControlsLayout.jsx     (src/layouts)
+│       │   ├── SliderWithLabels.jsx     (src/layouts)
+│       │   └── CustomTooltip.jsx        (src/UI)
+│       │
+│       └── PopularityControlLayout.jsx  (src/layouts)
+│           └── Tabs.jsx                 (src/UI)
 │
-└── ResultsSection (sections)
+└── ResultsSection.jsx                   (src/sections)
