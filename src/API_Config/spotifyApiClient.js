@@ -1,9 +1,7 @@
 // Get the API client credentials stored securely in the .env variables
-const clientId = "53686535113d49a2b73653616fe04071";
-const clientSecret = "47e7c822f9234047b711bdb3127423f6";
 
-// const clientId = import.meta.env.VITE_CLIENT_ID;
-// const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+const clientId = import.meta.env.VITE_CLIENT_ID;
+const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
 
 // Helper function to base64 encode client credentials (required for Spotify API token request)
 const encodedCredentials = btoa(`${clientId}:${clientSecret}`);

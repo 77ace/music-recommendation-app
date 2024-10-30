@@ -1,7 +1,7 @@
 import BackgroundGrid from "../UI/BackgroundGrid.jsx";
 import { Link } from "react-router-dom";
 import { TransitionDiv } from "../UI/TransitionDiv.jsx";
-export const ResultsSection = () => {
+export const ResultsSection = ({ tracksData, error }) => {
   return (
     <div className="flex flex-col">
       <BackgroundGrid />
