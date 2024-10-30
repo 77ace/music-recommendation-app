@@ -44,7 +44,7 @@ This project organizes components into various directories to streamline functio
 
 ## Components Structure Summary
 ```plaintext
-AppRouter.jsx
+AppRouter.jsx                            (src/)
 │
 ├── HomeSection.jsx                      (src/sections)
 │   ├── HeaderLayout.jsx                 (src/layouts/main)
