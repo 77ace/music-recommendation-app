@@ -20,7 +20,7 @@ export const CustomButton = ({
 
   return (
     <button
-      disabled={isGenreEmptyOnSearch}
+      disabled={isGenreEmptyOnSearch || loadingFetch}
       onClick={onClick}
       className={`inline-flex h-full w-full animate-shimmer select-none items-center ${isGenreEmptyOnSearch ? "bg-[linear-gradient(110deg,#450a0a,45%,#ef4444,55%,#450a0a)] ring-red-900" : "bg-[linear-gradient(110deg,#052e16,45%,#166534,55%,#052e16)]"} flex-col justify-center rounded-lg bg-[length:200%_100%] px-6 font-bold text-slate-200 transition-all sm:text-lg lg:text-xl xl:text-2xl`}
     >
