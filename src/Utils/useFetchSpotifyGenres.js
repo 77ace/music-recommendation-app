@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllGenres } from "../spotifyApiClient.js";
+import { getAllGenres } from "../API_Config/spotifyApiClient.js";
 
 // Custom hook to fetch Spotify genres
 export const useFetchSpotifyGenres = () => {

@@ -7,15 +7,12 @@ export const CustomSlider = memo(
   ({
     value,
     setValue,
-    // formatLabel,
-    displayLabel,
     min,
     max,
     step,
     defaultValue,
     style,
     orientation,
-    marks,
     gaps = 1,
   }) => {
     const theme = createTheme({
@@ -36,7 +33,7 @@ export const CustomSlider = memo(
     const midpoint = (min + max) / 2;
     const midpointMark = [{ value: midpoint, label: "" }];
 
-    const sliderStyleHorizontal = {
+    const sliderStyle = {
       color: "#37733a",
 
       "& .MuiSlider-track": {
@@ -96,43 +93,17 @@ export const CustomSlider = memo(
     };
 
     const handleChange = (event, newValue) => {
-      if (Array.isArray(newValue) && newValue.length === 2) {
-        // Ensure there's at least 1 unit gap between the slider values
-        const gap = gaps; // Minimum gap
-        const [newLower, newUpper] = newValue;
-
-        if (newUpper - newLower < gap) {
-          if (newLower !== value[0]) {
-            // Lower slider moved, adjust upper slider
-            setValue([newLower, newLower + gap]);
-          } else {
-            // Upper slider moved, adjust lower slider
-            setValue([newUpper - gap, newUpper]);
-          }
-        } else {
-          // If the gap is maintained, update the state as usual
-          setValue(newValue);
-        }
-      } else if (typeof value === "object") {
-        // If value is an object with two properties
-        setValue({ ...value, val: newValue });
-      } else {
-        // If newValue is a single value
-        setValue(newValue);
-      }
+      // If newValue is a single value
+      setValue(newValue);
     };
 
-    const sliderValue =
-      typeof value === "object" && value !== null && "val" in value
-        ? value.val
-        : value;
     return (
       <Slider
         defaultValue={defaultValue}
         onChange={handleChange}
         marks={midpointMark}
         // valueLabelFormat={formatLabel}
-        value={sliderValue}
+        value={value}
         min={min} // Set the minimum value in cm
         max={max} // Set the maximum value in cm
         step={step} // One inch increment in centimeters
@@ -143,7 +114,7 @@ export const CustomSlider = memo(
         }
         disableSwap
         style={style}
-        sx={sliderStyleHorizontal}
+        sx={sliderStyle}
       />
     );
   },

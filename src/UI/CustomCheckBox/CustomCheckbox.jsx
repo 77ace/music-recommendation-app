@@ -13,7 +13,7 @@ const CustomCheckbox = memo(({ dataName, value, setValue, height }) => {
         checked={value}
         onChange={handleChange}
         data-name={`${dataName}${value ? "" : ""}`}
-        className={`checkbox ${height} bg-[rgba(30,172,80,0.2)] text-slate-200 transition-all duration-75`}
+        className={`checkbox ${height} bg-neutral-600/20 text-slate-200 transition-all duration-75`}
       />{" "}
     </div>
   );

@@ -1,4 +1,4 @@
-import { CustomSlider } from "./CustomSlider.jsx";
+import { CustomSlider } from "../UI/CustomSlider.jsx";
 
 export const SliderWithLabels = ({
   mainLabel,
@@ -11,7 +11,7 @@ export const SliderWithLabels = ({
   className = "",
 }) => (
   <div
-    className={`flex items-center justify-center gap-4 sm:h-[50svh] sm:max-h-60 sm:min-h-48 sm:w-fit sm:flex-col lg:max-h-72 ${className}`}
+    className={`flex items-center justify-center gap-4 sm:h-48 sm:w-fit sm:flex-col lg:h-[50svh] lg:max-h-72 lg:min-h-48 ${className}`}
   >
     <h2 className="text-sm font-[500] text-neutral-200 max-sm:hidden">
       {mainLabel}

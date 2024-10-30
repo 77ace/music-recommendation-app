@@ -1,152 +1,20 @@
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useState } from "react";
-import { useFetchSpotifyGenres } from "../API_Config/Hooks/useFetchSpotifyGenres.js";
+import { useFetchSpotifyGenres } from "../Utils/useFetchSpotifyGenres.js";
+import {
+  commonGenres,
+  electronicGenres,
+  rockGenres,
+  worldGenres,
+  moodGenres,
+  acousticGenres,
+  filmAndShowGenres,
+} from "../Utils/genreCategories.js";
 
-export const GenreDropdown = ({ value, setValue }) => {
+export const GenreDropdown = ({ value, setValue, isGenreEmptyOnSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { genres, loading2, error2 } = useFetchSpotifyGenres();
-
-  // Define categories
-  const commonGenres = [
-    "pop",
-    "rock",
-    "hip-hop",
-    "jazz",
-    "classical",
-    "electronic",
-    "country",
-    "r-n-b",
-    "dance",
-    "indie",
-    "metal",
-    "folk",
-    "reggae",
-    "funk",
-    "indie-pop",
-    "power-pop",
-  ];
-
-  const electronicGenres = [
-    "house",
-    "deep-house",
-    "techno",
-    "trance",
-    "dubstep",
-    "drum-and-bass",
-    "electro",
-    "progressive-house",
-    "club",
-    "idm",
-    "edm",
-    "minimal-techno",
-    "breakbeat",
-    "detroit-techno",
-    "chicago-house",
-    "disco",
-    "dub",
-    "groove",
-    "hardstyle",
-    "synth-pop",
-    "trip-hop",
-  ];
-
-  const rockGenres = [
-    "alt-rock",
-    "alternative",
-    "punk",
-    "punk-rock",
-    "hard-rock",
-    "grunge",
-    "metalcore",
-    "heavy-metal",
-    "black-metal",
-    "death-metal",
-    "hardcore",
-    "psych-rock",
-    "garage",
-    "goth",
-    "cyberpunk",
-    "grindcore",
-    "emo",
-    "rock-n-roll",
-    "rockabilly",
-    "industrial",
-    "ska",
-  ];
-
-  const worldGenres = [
-    "latin",
-    "brazil",
-    "afrobeat",
-    "k-pop",
-    "j-pop",
-    "j-rock",
-    "iranian",
-    "turkish",
-    "mandopop",
-    "cantopop",
-    "samba",
-    "salsa",
-    "pagode",
-    "mpb",
-    "swedish",
-    "world-music",
-    "french",
-    "german",
-    "indian",
-    "malay",
-    "tango",
-    "sertanejo",
-    "bossanova",
-    "philippines-opm",
-    "dancehall",
-    "forro",
-    "j-dance",
-    "j-idol",
-    "latino",
-    "reggaeton",
-  ];
-
-  const moodGenres = [
-    "chill",
-    "ambient",
-    "happy",
-    "sad",
-    "sleep",
-    "study",
-    "summer",
-    "rainy-day",
-    "work-out",
-    "romance",
-    "holidays",
-    "new-age",
-    "party",
-    "road-trip",
-  ];
-
-  const acousticGenres = [
-    "acoustic",
-    "singer-songwriter",
-    "songwriter",
-    "blues",
-    "soul",
-    "piano",
-    "guitar",
-    "folk",
-    "bluegrass",
-    "gospel",
-    "honky-tonk",
-  ];
-
-  const filmAndShowGenres = [
-    "anime",
-    "movies",
-    "disney",
-    "show-tunes",
-    "pop-film",
-    "soundtracks",
-  ];
 
   // Adjusted filter to capture all remaining genres not yet categorized
   const otherGenres = genres.filter(
@@ -162,7 +30,7 @@ export const GenreDropdown = ({ value, setValue }) => {
       ].includes(genre),
   );
 
-  // Map genres to options format
+  // Map genres to options format (react-select dropdown format)
   const formatOptions = (genreList) =>
     genreList.map((genre) => ({
       value: genre,
@@ -219,6 +87,7 @@ export const GenreDropdown = ({ value, setValue }) => {
     { label: "Other Genres", options: formatOptions(otherGenres) },
   ];
 
+  // Format the group labels and add a counter for number of options in each group
   const formatGroupLabel = (data) => (
     <div
       style={{
@@ -247,12 +116,15 @@ export const GenreDropdown = ({ value, setValue }) => {
       </span>
     </div>
   );
+
+  // API allow 5 genres only, so close menu when more
   const handleMenuOpen = () => {
     if (value.length < 5) {
       setIsMenuOpen(true);
     }
   };
 
+  // Save the values in the state
   const handleChange = (options) => {
     if (options.length <= 5) {
       setValue(options);
@@ -261,6 +133,7 @@ export const GenreDropdown = ({ value, setValue }) => {
 
   const animatedComponents = makeAnimated();
 
+  // Styling for the drop down component
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -284,7 +157,7 @@ export const GenreDropdown = ({ value, setValue }) => {
       opacity: isMenuOpen ? 1 : 0,
       animation: isMenuOpen ? "fadeIn 0.2s ease-in" : "fadeOut 0.2s ease-out",
       borderRadius: "8px",
-      zIndex: 30,
+      zIndex: 80,
     }),
     menuList: (base) => ({
       ...base,
@@ -321,10 +194,13 @@ export const GenreDropdown = ({ value, setValue }) => {
 
   return (
     <Select
-      placeholder="Max 5 Options"
+      placeholder={
+        isGenreEmptyOnSearch ? "Select at Least One" : "Max 5 Options"
+      }
       closeMenuOnSelect={value.length >= 4}
       components={animatedComponents}
       isMulti
+      defaultValue={value}
       options={groupedOptions}
       styles={customStyles}
       onChange={handleChange}

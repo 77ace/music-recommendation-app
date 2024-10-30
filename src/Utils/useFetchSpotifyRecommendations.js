@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRecommendations } from "../spotifyApiClient.js";
+import { getRecommendations } from "../API_Config/spotifyApiClient.js";
 
 // Custom hook to fetch Spotify recommendations
 export const useFetchSpotifyRecommendations = (searchParams, shouldFetch) => {
