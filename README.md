@@ -14,11 +14,13 @@ This project organizes components into various directories to streamline functio
 
 ## Main Structure
 
-- **AppRouter.jsx (src/ )**: The main router file, managing navigation between `HomeSection` and `ResultsSection`.
+- **AppRouter.jsx (src/)**: The main router file, managing navigation between `HomeSection` and `ResultsSection`.
 
 ### HomeSection.jsx (src/sections)
 - **HeaderLayout.jsx (src/Layouts/Main)**: Contains header elements for the Home section.
-- **AllControlsLayout.jsx (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
+- **TransitionDiv.jsx (src/UI)**: Used for animated transitions from/to HomeSection.
+- **BackgroundGrid.jsx (src/UI)**: Provides a background grid effect within the Home section.
+- - **AllControlsLayout.jsx (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
 
     - **GenreControlLayout.jsx (src/Layouts)**: Manages genre selection.
         - Uses `GenreDropdown.jsx` (src/UI).
@@ -30,11 +32,13 @@ This project organizes components into various directories to streamline functio
     - **OptionControlsLayout.jsx (src/Layouts)**: Provides additional filtering options.
         - Uses `SliderWithLabels.jsx` (src/layouts) and `CustomTooltip.jsx` (src/UI).
 
-    - **PopularityControlLayou.jsxt (src/Layouts)**: Manages popularity-based filtering.
+    - **PopularityControlLayout.jsx (src/Layouts)**: Manages popularity-based filtering.
         - Uses `Tabs.jsx` (src/UI) for popularity selection.
 
-### ResultsSection (src/sections)
+### ResultsSection.jsx (src/sections)
 - Displays the search results based on selected filters.
+- **TransitionDiv.jsx (src/UI)**: Used for animated transitions from/to ResultsSection.
+- **BackgroundGrid.jsx (src/UI)**: Provides a background grid effect within the Results section.
 
 ---
 
@@ -44,7 +48,9 @@ AppRouter.jsx
 │
 ├── HomeSection.jsx                      (src/sections)
 │   ├── HeaderLayout.jsx                 (src/layouts/main)
-│   └── AllControlsLayout.jsx            (src/layouts/main)
+│   ├── AllControlsLayout.jsx            (src/layouts/main)
+│   ├── TransitionDiv.jsx                (src/UI)
+│   └── BackgroundGrid.jsx               (src/UI)
 │       │
 │       ├── GenreControlLayout.jsx       (src/layouts)
 │       │   └── GenreDropdown.jsx        (src/UI)
@@ -63,3 +69,5 @@ AppRouter.jsx
 │           └── Tabs.jsx                 (src/UI)
 │
 └── ResultsSection.jsx                   (src/sections)
+    ├── TransitionDiv.jsx                (src/UI)
+    └── BackgroundGrid.jsx               (src/UI)
