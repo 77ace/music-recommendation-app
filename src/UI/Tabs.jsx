@@ -20,7 +20,7 @@ const Tabs = ({ value, setValue, options }) => {
               className={`flex h-full w-full cursor-pointer select-none items-center justify-center rounded-md p-2 text-center text-sm font-[400] font-[500] transition-all duration-200 max-sm:p-1.5 ${
                 value === option
                   ? "bg-[rgba(30,172,80,0.3)] text-slate-100"
-                  : "bg-neutral-600/20 text-slate-200 duration-[20ms] hover:bg-neutral-600/30 active:scale-[97%]"
+                  : "bg-neutral-600/[22%] text-slate-200 duration-[20ms] hover:bg-neutral-600/30 active:scale-[97%]"
               }`}
             >
               {option}

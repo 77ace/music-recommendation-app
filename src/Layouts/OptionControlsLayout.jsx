@@ -9,7 +9,7 @@ export const OptionControlsLayout = ({
   handleControlsChange,
 }) => {
   return (
-    <div className="flex w-full flex-grow flex-col justify-around rounded-lg border-neutral-400/70 bg-neutral-600/20 px-4 py-2 sm:flex-row sm:items-center sm:gap-6 sm:px-5 sm:py-5 lg:mt-2 lg:w-2/5 xl:w-fit">
+    <div className="flex w-full flex-grow flex-col justify-around rounded-lg border-neutral-400/70 bg-neutral-600/[22%] px-4 py-2 sm:flex-row sm:items-center sm:gap-6 sm:px-5 sm:py-5 lg:mt-2 lg:w-2/5 xl:w-fit">
       <h2 className="pointer-events-none z-[1] flex select-none flex-col items-center justify-center rounded-md px-4 text-center font-bold text-slate-200 max-sm:text-sm sm:-ml-2 sm:-mr-4 lg:-ml-4">
         Options
         <IoOptions className="text-3xl max-sm:hidden" />

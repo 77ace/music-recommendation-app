@@ -202,6 +202,7 @@ export const GenreDropdown = ({ value, setValue, isGenreEmptyOnSearch }) => {
       isMulti
       defaultValue={value}
       options={groupedOptions}
+      value={value}
       styles={customStyles}
       onChange={handleChange}
       onMenuOpen={handleMenuOpen}

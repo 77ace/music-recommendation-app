@@ -48,7 +48,7 @@ export const AllControlsLayout = ({
         </div>
         <div className="flex w-full flex-col items-center justify-center gap-2">
           {/*This is the checkbox that appear when screen size is < sm or > lg*/}
-          <div className="flex w-full items-center justify-center rounded-lg bg-neutral-600/20 p-2 sm:hidden lg:mt-2 lg:block lg:h-1/3">
+          <div className="flex w-full items-center justify-center rounded-lg bg-neutral-600/[22%] p-2 sm:hidden lg:mt-2 lg:block lg:h-1/3">
             <CustomCheckbox
               value={searchParams.includeExplicit}
               setValue={(value) =>

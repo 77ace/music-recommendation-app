@@ -7,7 +7,7 @@ import { CustomTooltip } from "../UI/CustomTooltip.jsx";
 
 export const MoodControlsLayout = ({ searchParams, handleControlsChange }) => {
   return (
-    <div className="mt-2 flex w-full flex-col justify-around rounded-lg border-neutral-400/70 bg-neutral-600/20 px-4 py-2 sm:flex-row sm:items-center sm:gap-6 sm:py-5 lg:w-3/5 xl:w-fit">
+    <div className="mt-2 flex w-full flex-col justify-around rounded-lg bg-neutral-600/[22%] px-4 py-2 sm:flex-row sm:items-center sm:gap-6 sm:py-5 lg:w-3/5 xl:w-fit">
       <h2 className="pointer-events-none z-[1] flex select-none flex-col items-center justify-center rounded-md pl-4 text-center font-bold text-slate-200 max-sm:text-sm lg:-ml-2 lg:-mr-7 lg:pr-3 xl:pr-4">
         Mood
         <SiBytedance className="text-3xl max-sm:hidden" />

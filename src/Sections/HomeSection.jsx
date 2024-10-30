@@ -112,12 +112,7 @@ function HomeSection() {
             <FaInfoCircle /> Hover or tap on slider labels for details
           </h3>
           <h3
-            onClick={() =>
-              setSearchParams((prevParams) => ({
-                ...DEFAULT_SEARCH_PARAMS,
-                ["selectedGenres"]: prevParams.selectedGenres, //Reset everything but genre
-              }))
-            }
+            onClick={() => setSearchParams(DEFAULT_SEARCH_PARAMS)}
             className="mb-1 flex cursor-pointer select-none items-center gap-1.5 text-sm text-neutral-400 max-sm:text-xs sm:ml-0.5"
           >
             <FaArrowRotateLeft />
