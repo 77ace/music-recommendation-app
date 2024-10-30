@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { getRecommendations } from "../API_Config/spotifyApiClient.js";
+import useSessionStorageState from "./useSessionStorageState.js";
 
 // Custom hook to fetch Spotify recommendations
 export const useFetchSpotifyRecommendations = (searchParams, shouldFetch) => {
-  const [tracks, setTracks] = useState([]); // Holds the fetched track data
-  const [loading, setLoading] = useState(false); // Indicates loading state
-  const [error, setError] = useState(null); // Holds error messages, if any
+  const [tracks, setTracks] = useSessionStorageState("trackData", []); // Holds the fetched track data
+  const [loading, setLoading] = useSessionStorageState("loading", false); // Indicates loading state
+  const [error, setError] = useSessionStorageState("error", null); // Holds error messages, if any
 
   useEffect(() => {
     const fetchTracks = async () => {
