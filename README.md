@@ -16,22 +16,22 @@ This project organizes components into various directories to streamline functio
 
 - **AppRouter.jsx (src/ )**: The main router file, managing navigation between `HomeSection` and `ResultsSection`.
 
-### HomeSection (src/sections)
-- **HeaderLayout (src/Layouts/Main)**: Contains header elements for the Home section.
-- **AllControlsLayout (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
+### HomeSection.jsx (src/sections)
+- **HeaderLayout.jsx (src/Layouts/Main)**: Contains header elements for the Home section.
+- **AllControlsLayout.jsx (src/Layouts/Main)**: Aggregates all control layouts for user interaction.
 
-    - **GenreControlLayout (src/Layouts)**: Manages genre selection.
-        - Uses `GenreDropdown` (src/UI).
+    - **GenreControlLayout.jsx (src/Layouts)**: Manages genre selection.
+        - Uses `GenreDropdown.jsx` (src/UI).
 
-    - **MoodControlsLayout (src/Layouts)**: Controls mood-based filters.
-        - Includes `SliderWithLabels` (src/layouts), containing `CustomSlider` (src/UI).
-        - Uses `CustomCheckbox` (src/UI) and `CustomTooltip` (src/UI) for mood options.
+    - **MoodControlsLayout.jsx (src/Layouts)**: Controls mood-based filters.
+        - Includes `SliderWithLabels.jsx` (src/layouts), containing `CustomSlider.jsx` (src/UI).
+        - Uses `CustomCheckbox.jsx` (src/UI) and `CustomTooltip.jsx` (src/UI) for mood options.
 
-    - **OptionControlsLayout (src/Layouts)**: Provides additional filtering options.
-        - Uses `SliderWithLabels` (src/layouts) and `CustomTooltip` (src/UI).
+    - **OptionControlsLayout.jsx (src/Layouts)**: Provides additional filtering options.
+        - Uses `SliderWithLabels.jsx` (src/layouts) and `CustomTooltip.jsx` (src/UI).
 
-    - **PopularityControlLayout (src/Layouts)**: Manages popularity-based filtering.
-        - Uses `Tabs` (src/UI) for popularity selection.
+    - **PopularityControlLayou.jsxt (src/Layouts)**: Manages popularity-based filtering.
+        - Uses `Tabs.jsx` (src/UI) for popularity selection.
 
 ### ResultsSection (src/sections)
 - Displays the search results based on selected filters.
