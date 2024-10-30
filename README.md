@@ -47,10 +47,10 @@ This project organizes components into various directories to streamline functio
 AppRouter.jsx                            (src/)
 │
 ├── HomeSection.jsx                      (src/sections)
-│   ├── HeaderLayout.jsx                 (src/layouts/main)
-│   ├── AllControlsLayout.jsx            (src/layouts/main)
 │   ├── TransitionDiv.jsx                (src/UI)
-│   └── BackgroundGrid.jsx               (src/UI)
+│   ├── BackgroundGrid.jsx               (src/UI)
+│   ├── HeaderLayout.jsx                 (src/layouts/main)
+│   └── AllControlsLayout.jsx            (src/layouts/main)
 │       │
 │       ├── GenreControlLayout.jsx       (src/layouts)
 │       │   └── GenreDropdown.jsx        (src/UI)
