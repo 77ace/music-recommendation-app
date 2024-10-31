@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { ResultsSection } from "./Sections/ResultsSection.jsx";
 import HomeSection from "./Sections/HomeSection.jsx";
 import { AnimatePresence } from "framer-motion";
@@ -68,30 +68,44 @@ export const AppRouter = () => {
   console.log("api_params: ", API_Params);
 
   // Fetch tracks using the custom hook only when shouldFetch change to true
-  const { tracks, loading, error } = useFetchSpotifyRecommendations(
-    API_Params,
-    shouldFetch,
-  );
-
+  const { tracks, loading, error, setTracks, setError } =
+    useFetchSpotifyRecommendations(API_Params, shouldFetch);
+  console.log("tracks: ", tracks, loading, error);
   // Effect to reset 'shouldFetch' after the API call is done
   useEffect(() => {
     if (shouldFetch) {
+      //with loadin on/off, check if fetch is triggreed and turn it off
       setShouldFetch(false); // Reset after fetching
     }
-  }, [tracks]);
+    if (tracks.length > 0) {
+      // when loading is over navigate if tracks fetched
+      const timer = setTimeout(() => navigate("/results"), 1500); //Debounce navigation
 
-  console.log("tracks: ", tracks, loading, error);
+      // Cleanup function to clear the timeout if the component unmounts
+      return () => clearTimeout(timer);
+    }
 
+    if (error) {
+      // when loading is over and error debounce longer before navigate
+      const timer = setTimeout(() => navigate("/results"), 3000); //Debounce navigation
+
+      // Cleanup function to clear the timeout if the component unmounts
+      return () => clearTimeout(timer);
+    }
+  }, [tracks, error]);
+
+  const navigate = useNavigate();
   // Handle search button click
   const handleSearch = (e) => {
     if (searchParams.selectedGenres.length === 0) {
       setIsGenreEmptyOnSearch(true); // If Genre is empty set flag to true, which will trigger a chain of styling events (button and dropdown turn red, notifying user)
       setTimeout(() => {
-        setIsGenreEmptyOnSearch(false); // after 1 second set it back to false in order to undo the formatting changes to default
+        setIsGenreEmptyOnSearch(false); // after 2.5 second set it back to false in order to undo the formatting changes to default
       }, 1000);
     } else {
       setShouldFetch(true); // If genre not empty, set shouldFetch state to True to initiate the request
-      return true; // Indicate successful preparation for the search
+
+      return true;
     }
   };
 
@@ -120,7 +134,14 @@ export const AppRouter = () => {
           />
           <Route
             path="/results"
-            element={<ResultsSection tracksData={tracks} error={error} />}
+            element={
+              <ResultsSection
+                tracksData={tracks}
+                error={error}
+                setTracks={setTracks}
+                setError={setError}
+              />
+            }
           />
         </Routes>
       </AnimatePresence>

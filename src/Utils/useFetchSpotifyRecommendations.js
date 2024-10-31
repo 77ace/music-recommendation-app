@@ -17,7 +17,7 @@ export const useFetchSpotifyRecommendations = (searchParams, shouldFetch) => {
         const recommendations = await getRecommendations(searchParams); // Fetch data from API
         setTracks(recommendations);
       } catch (err) {
-        setError("Failed to fetch tracks. Please try again.");
+        setError("Failed to fetch tracks. Please try again.", err);
       } finally {
         setLoading(false); // Always set loading to false after fetching
       }
@@ -28,5 +28,5 @@ export const useFetchSpotifyRecommendations = (searchParams, shouldFetch) => {
     }
   }, [shouldFetch]);
 
-  return { tracks, loading, error }; // Return track data, loading state, and error state
+  return { tracks, loading, error, setTracks, setError }; // Return track data, loading state, and error state
 };
