@@ -65,12 +65,12 @@ export const AppRouter = () => {
 
   const API_Params = generateSearchParams();
 
-  console.log("api_params: ", API_Params);
+  // console.log("api_params: ", API_Params);
 
   // Fetch tracks using the custom hook only when shouldFetch change to true
   const { tracks, loading, error, setTracks, setError } =
     useFetchSpotifyRecommendations(API_Params, shouldFetch);
-  console.log("tracks: ", tracks, loading, error);
+  // console.log("tracks: ", tracks, loading, error);
   // Effect to reset 'shouldFetch' after the API call is done
   useEffect(() => {
     if (shouldFetch) {

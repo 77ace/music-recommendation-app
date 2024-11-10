@@ -1,8 +1,7 @@
 // Get the API client credentials stored securely in the .env variables
 
-
-const clientId = import.meta.env.VITE_CLIENT_ID;
-const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+const clientId = "Your ClientId";
+const clientSecret = "Your ClientSecret";
 
 // Helper function to base64 encode client credentials (required for Spotify API token request)
 const encodedCredentials = btoa(`${clientId}:${clientSecret}`);
@@ -72,16 +71,13 @@ export const getRecommendations = async (searchParams) => {
     const queryParams = new URLSearchParams(searchParams);
 
     // Make a GET request to Spotify's recommendations endpoint
-    const response = await fetch(
-      `https://api.spotify.com/v1/recommendations?${queryParams}`,
-      {
-        method: "GET", // GET request to fetch data
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer token required for authorization
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(`https://api.spotify.com/v1/recommendations?${queryParams}`, {
+      method: "GET", // GET request to fetch data
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer token required for authorization
+        "Content-Type": "application/json",
       },
-    );
+    });
 
     // Handle "Too Many Requests" error if API rate limit is exceeded
     if (response.status === 429) {
@@ -102,16 +98,13 @@ export const getRecommendations = async (searchParams) => {
     const trackIds = data.tracks.map((track) => track.id);
 
     // Fetch track features (audio characteristics) using the track IDs
-    const featuresResponse = await fetch(
-      `https://api.spotify.com/v1/audio-features?ids=${trackIds.join(",")}`,
-      {
-        method: "GET", // GET request to fetch track features
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Same access token for authorization
-          "Content-Type": "application/json",
-        },
+    const featuresResponse = await fetch(`https://api.spotify.com/v1/audio-features?ids=${trackIds.join(",")}`, {
+      method: "GET", // GET request to fetch track features
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Same access token for authorization
+        "Content-Type": "application/json",
       },
-    );
+    });
 
     // If response for track features is not OK, throw an error
     if (!featuresResponse.ok) {
@@ -146,16 +139,13 @@ export const getAllGenres = async () => {
     const accessToken = await getAccessToken(); // Ensure we have a valid access token
 
     // Make a GET request to Spotify's genre seeds endpoint
-    const response = await fetch(
-      `https://api.spotify.com/v1/recommendations/available-genre-seeds`,
-      {
-        method: "GET", // GET request to fetch available genres
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Bearer token required for authorization
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(`https://api.spotify.com/v1/recommendations/available-genre-seeds`, {
+      method: "GET", // GET request to fetch available genres
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Bearer token required for authorization
+        "Content-Type": "application/json",
       },
-    );
+    });
 
     // If response is not OK, throw an error
     if (!response.ok) {

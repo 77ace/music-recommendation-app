@@ -8,16 +8,9 @@ import useSessionStorageState from "../Utils/useSessionStorageState.js";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import { TransitionDiv } from "../UI/TransitionDiv.jsx";
 
-function HomeSection({
-  handleReset,
-  searchParams,
-  handleControlsChange,
-  isGenreEmptyOnSearch,
-  handleSearch,
-  loading,
-}) {
+function HomeSection({ handleReset, searchParams, handleControlsChange, isGenreEmptyOnSearch, handleSearch, loading }) {
   return (
-    <div className="flex min-h-[100svh] flex-row items-center justify-center pb-4">
+    <div className="doto flex min-h-[100svh] flex-row items-center justify-center pb-4">
       <div className="App mx-auto max-w-screen-xl flex-grow px-4 pt-4 transition-all sm:px-8 md:px-16">
         <BackgroundGrid />
         <TransitionDiv />

@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .dot-pattern {
-    background: radial-gradient(circle, black 1px, transparent 1px);
-    background-size: 20px 20px; /* Adjust the size as needed */
-    opacity: 0.2; /* Adjust opacity for visibility */
+  background: radial-gradient(circle, black 1px, transparent 1px);
+  background-size: 20px 20px; /* Adjust the size as needed */
+  opacity: 0.2; /* Adjust opacity for visibility */
 }
 
 /*@keyframes gradientShift {*/
@@ -35,81 +35,113 @@
 /*    animation: fadeIn 2s ease-in forwards;*/
 /*}*/
 
-
-body {background-color: black; color: #EAEAEA}
+body {
+  background-color: black;
+  color: #eaeaea;
+}
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 /* Customize website's scrollbar like Mac OS
 Not supports in Firefox and IE */
 
 /* total width */
 body::-webkit-scrollbar {
-    background-color: transparent;
-    width: 6px;
+  background-color: transparent;
+  width: 6px;
 }
 
 /* background of the scrollbar except button or resizer */
 body::-webkit-scrollbar-track {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 /* scrollbar itself */
 body::-webkit-scrollbar-thumb {
-    background-color: #5a5a5a;
-    /*border: 4px solid #fff;*/
+  background-color: #5a5a5a;
+  /*border: 4px solid #fff;*/
 }
 
 /* set button(top and bottom of the scrollbar) */
 body::-webkit-scrollbar-button {
-    display:none;
+  display: none;
 }
 
 /*Drop down menu fade in animation*/
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .fadeIn {
-    animation: fadeIn 0.3s forwards;
+  animation: fadeIn 0.3s forwards;
 }
 
 .fadeOut {
-    animation: fadeOut 0.3s forwards;
+  animation: fadeOut 0.3s forwards;
 }
 
 @keyframes slideFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideFadeOut {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 .menu {
-    animation: slideFadeIn 0.3s forwards;
+  animation: slideFadeIn 0.3s forwards;
 }
 
 .menu-closing {
-    animation: slideFadeOut 0.3s forwards;
+  animation: slideFadeOut 0.3s forwards;
+}
+
+.doto {
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "ROND" 0;
+}
+
+@keyframes gradient-pulse {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-pulse {
+  background-size: 200% 100%;
+  animation: gradient-pulse 2s linear infinite;
 }
