@@ -145,3 +145,13 @@ body::-webkit-scrollbar-button {
   background-size: 200% 100%;
   animation: gradient-pulse 2s linear infinite;
 }
+
+.slider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #38a169 0%,
+    /* Color at the start of the slider */ #38a169 calc(var(--value) * 1%),
+    #e5e7eb calc(var(--value) * 1%),
+    #e5e7eb 100%
+  );
+}

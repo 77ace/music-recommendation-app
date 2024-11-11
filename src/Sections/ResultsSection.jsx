@@ -4,7 +4,7 @@ import { TransitionDiv } from "../UI/TransitionDiv.jsx";
 import { useEffect, useState } from "react";
 import SongListItem from "../Layouts/SongListItem.jsx";
 import useSessionStorageState from "../Utils/useSessionStorageState.js";
-import useSortSongs from "../Utils/useSortSongs.js";
+import SortSongs from "../Utils/SortSongs.js";
 import HeaderLayout from "../Layouts/Main/HeaderLayout.jsx";
 
 export const ResultsSection = ({ tracksData, error, setTracks, setError }) => {
@@ -20,17 +20,17 @@ export const ResultsSection = ({ tracksData, error, setTracks, setError }) => {
   //states for audio player
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(null);
-  const [audio] = useState(new Audio()); // Single Audio instance
+  const [audio] = useState(new Audio()); //Audio instance
 
-  // Retrieve user target features
+  //Retrieve user target features
   const [searchParams, setSearchParams] = useSessionStorageState("SearchParams", {});
 
-  // Sort tracks and store in session storage
+  //Sort tracks and store in session storage
   const [trackList, setTrackList] = useSessionStorageState("TrackList", []);
 
-  // Sort and update trackList whenever tracksData or searchParams change
+  //Sort and update trackList whenever tracksData or searchParams change
   useEffect(() => {
-    const sortedTracks = useSortSongs(searchParams, tracksData);
+    const sortedTracks = SortSongs(searchParams, tracksData);
     setTrackList(sortedTracks); // Update session storage with sorted tracks
   }, [searchParams, tracksData, setTrackList]);
 
@@ -40,7 +40,7 @@ export const ResultsSection = ({ tracksData, error, setTracks, setError }) => {
       audio.src = currentTrack.song.preview_url; // Set the audio source to the new track
       audio.play();
       setIsPlaying(true);
-      audio.volume = 0.4; // Set volume level
+      audio.volume = 0.3; // Set volume level
 
       audio.onended = () => setIsPlaying(false); // Stop playback when audio ends
     }
@@ -60,7 +60,7 @@ export const ResultsSection = ({ tracksData, error, setTracks, setError }) => {
       // If it's a new track or resuming, set the new track
       setCurrentTrack(track);
       audio.play();
-      audio.volume = 0.5;
+      audio.volume = 0.3;
       setIsPlaying(true);
     }
   };
@@ -79,7 +79,7 @@ export const ResultsSection = ({ tracksData, error, setTracks, setError }) => {
           <h2>We are having trouble Matching you music</h2>
         ) : (
           <>
-            <h2 className="mb-4 bg-gradient-to-r from-slate-200/95 to-slate-200/90 bg-clip-text text-center text-4xl transition-all duration-300 sm:text-6xl md:text-8xl">
+            <h2 className="mb-4 bg-gradient-to-r from-slate-200/95 to-slate-200/90 bg-clip-text text-center text-4xl transition-all duration-300 sm:text-5xl md:text-8xl">
               We Found{" "}
               <span className="animate-gradient-pulse ml-2 bg-gradient-to-r from-teal-500 to-green-600 bg-clip-text font-bold text-transparent">
                 {" "}
